@@ -7,23 +7,6 @@ class Flower():
         self.once_every = once_every
         self.how_much = how_much
 
-def create_connection(db_file):
-    conn = None
-    try:
-        conn = sqlite3.connect('flowers.db')
-    except Error as e:
-        print(e)
-
-    return conn
-
-def select_all_task(conn):
-    cur = conn.cursor()
-    cur.exectue('SELECT * FROM flowers')
-    rows = cur.fetchall()
-
-    for row in rows:
-        print(row)
-
 conn = sqlite3.connect('flowers.db')
 cur = conn.execute('SELECT * FROM flowers')
 records = cur.fetchall()
