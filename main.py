@@ -2,25 +2,45 @@ import sqlite3
 import datetime
 
 class Flower():
-    def __init__(self, name, once_every, how_much):
+    def __init__(self, name, description, once_every, how_much, last_watering):
         self.name = name
+        self.description = description
         self.once_every = once_every
         self.how_much = how_much
+        self.last_watering = last_watering
 
+f_name = input('Flower name: ')
+f_description = input('Flower description: ')
+f_once_every = input('Once every day in a week, this plant need watering: ')
+f_how_much = input('How much water in ml does this flower need: ')
+f_last_watering = input('When was the last watering?(format of input yyyy-mm-dd): ')
+
+# connect with database
 conn = sqlite3.connect('flowers.db')
+
+# insert new flower into database
+sql = f""" INSERT INTO flowers
+            (name, description, once_every, how_much, last_watering)
+            VALUES('{f_name}', '{f_description}', '{f_once_every}', '{f_how_much}', '{f_last_watering}')"""
+
+cur = conn.cursor()
 cur = conn.execute('SELECT * FROM flowers')
+bdw = conn.execute(sql)
 records = cur.fetchall()
+conn.commit()
+print('Insert operation ok! ')
 
 #get all info about flower
 for row in records:
      print("Name: ", row[0])
      print("Description: ", row[1])
      print("once_every: ", row[2])
-     print("How_Often: ", row[3])
+     print("How_much in ml: ", row[3])
+     print('Last watering: ', row[4])
      print("\n")
 
-#flower = Flower(name=input('What is the name of the flower: '), once_every=int(input('How many days till another watering: ')), how_much=float(input('How much water in ml: ')))
-flower = Flower(name=cur.execute('SELECT name FROM flowers'), once_every=cur.execute('SELECT once_every FROM flowers'), how_much=cur.execute('SELECT how_much FROM flowers'))
+#get data to class, and create object flower from class Flower
+flower = Flower(name=row[0],description=row[1], once_every=row[2], how_much=row[3], last_watering=row[4])
 
 #Dates
 now = datetime.datetime.now().date()
