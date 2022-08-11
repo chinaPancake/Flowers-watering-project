@@ -1,5 +1,5 @@
 import sqlite3
-import datetime
+from datetime import datetime, date, timedelta
 
 class Flower:
     def __init__(self, name, description, frequency, amount, last_watering):
@@ -8,7 +8,6 @@ class Flower:
         self.frequency = frequency
         self.amount = amount
         self.last_watering = last_watering
-
 def print_menu():
     for key in menu_options.keys():
         print(menu_options[key])
@@ -17,7 +16,9 @@ menu_options= {
     1: '1. Add new flower',
     2: '2. Delete flower from database',
     3: '3. Show info about all flowers',
-    4: '4. Exit',
+    4: '4. When next watering',
+    5: '5. Save to file',
+    6: '6. Exit',
 }
 # connect with database
 conn = sqlite3.connect('flowers.db')
@@ -71,17 +72,28 @@ while(True):
             print('-------------')
 
     elif option == 4:
-        print("Thanks for today! Let's grow togheter! ")
-        conn.commit()
-        exit()
+        print('-------------')
+        print('Today is: ', date.today())
+        print('-------------')
+        for date in records:
+            dateint = datetime.strptime(date[4], '%Y-%m-%d')
+            timdelta_watering = dateint + timedelta(days=date[2])
+            print('Last watering of ', date[0], ' was', date[4],
+                  'and this flower you have to water every: ',date[2], 'days.', '\n',
+                  'Next watering should be done in ', timdelta_watering.strftime("%Y-%m-%d"))
+        print('-------------')
 
-
-'''#get data to class, and create object flower from class Flower
-flower = Flower(name=row[0], description=row[1], frequency=row[2], amount=row[3], last_watering=row[4])
-Dates
-now = datetime.datetime.now().date()
-base = datetime.datetime.today().date()
-next_watering = base + datetime.timedelta(days=row[2])
-last_watering = base - datetime.timedelta(days=row[2])
-print('Today is: ',now.strftime("%A"), f'({now})', ' next watering should be done in: ', next_watering.strftime("%A"), f'({next_watering})' , f' and you should add {row[3]} ml of water')
-print('Last watering was', last_watering.strftime("%A") ,f'({last_watering})')'''
+    elif option == 5:
+        print('Save to file')
+        with open('share.txt', 'w', encoding='utf-8') as save_to_file:
+            for save in records:
+                save_to_file.write(f'Flower name: {save[0]} \n'),
+                save_to_file.write(f'Flower Description:  {save[1]} \n'),
+                save_to_file.write(f'Flower Once_every:  {save[2]} \n'),
+                save_to_file.write(f'Flower How Much water:  {save[3]} \n'),
+                save_to_file.write(f'Flower Last Watering:  {save[4]} \n'),
+                save_to_file.write('\n ------------------ \n\n'),
+    elif option == 6:
+            print("Thanks for today! Let's grow togheter! ")
+            conn.commit()
+            exit()
