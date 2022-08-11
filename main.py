@@ -42,36 +42,43 @@ while(True):
                     VALUES('{f_name}', '{f_description}', '{f_frequency}', '{f_amount}', '{f_last_watering}')"""
         sql_execute = conn.execute(sql)
         conn.commit()
-
         print('Insert operation ok! ')
 
     # Delete from database
     elif option == 2:
+        print('-------------')
+        for name in records:
+            print('flower name: ', name[0])
         f_delete = input('What flower do you want to delete? (put flower name): ')
-        cur.execute(f"""DELETE FROM flowers WHERE name LIKE '{f_delete}'""")
-        conn.commit()
-
-        print(f'You just delete {f_delete}')
+        if f_delete.lower() == 'quit':
+            print('-------------')
+            pass
+        elif f_delete.lower() != 'quit':
+            cur.execute(f"""DELETE FROM flowers WHERE name LIKE '{f_delete}'""")
+            conn.commit()
+            print(f'You just delete {f_delete}')
+            print('-------------')
 
     # get all info about flower
     elif option == 3:
+        print('-------------')
         for row in records:
-             print("Name: ", row[0])
-             print("Description: ", row[1])
-             print("once_every: ", row[2])
-             print("How_much in ml: ", row[3])
-             print('Last watering: ', row[4])
-             print("\n")
+            print("Name: ", row[0])
+            print("Description: ", row[1])
+            print("once_every: ", row[2])
+            print("How_much in ml: ", row[3])
+            print('Last watering: ', row[4])
+            print('-------------')
 
     elif option == 4:
         print("Thanks for today! Let's grow togheter! ")
         conn.commit()
         exit()
 
-#get data to class, and create object flower from class Flower
-flower = Flower(name=row[0], description=row[1], frequency=row[2], amount=row[3], last_watering=row[4])
 
-'''Dates
+'''#get data to class, and create object flower from class Flower
+flower = Flower(name=row[0], description=row[1], frequency=row[2], amount=row[3], last_watering=row[4])
+Dates
 now = datetime.datetime.now().date()
 base = datetime.datetime.today().date()
 next_watering = base + datetime.timedelta(days=row[2])
