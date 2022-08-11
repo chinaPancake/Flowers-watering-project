@@ -41,12 +41,20 @@ while(True):
                     (name, description, once_every, how_much, last_watering)
                     VALUES('{f_name}', '{f_description}', '{f_frequency}', '{f_amount}', '{f_last_watering}')"""
         sql_execute = conn.execute(sql)
-        print('Insert operation ok! ')
-    elif option == 2:
-        print('Deleting is not ready right now, its gonna be add soon.')
+        conn.commit()
 
+        print('Insert operation ok! ')
+
+    # Delete from database
+    elif option == 2:
+        f_delete = input('What flower do you want to delete? (put flower name): ')
+        cur.execute(f"""DELETE FROM flowers WHERE name LIKE '{f_delete}'""")
+        conn.commit()
+
+        print(f'You just delete {f_delete}')
+
+    # get all info about flower
     elif option == 3:
-        #get all info about flower
         for row in records:
              print("Name: ", row[0])
              print("Description: ", row[1])
@@ -57,6 +65,7 @@ while(True):
 
     elif option == 4:
         print("Thanks for today! Let's grow togheter! ")
+        conn.commit()
         exit()
 
 #get data to class, and create object flower from class Flower
