@@ -54,18 +54,23 @@ def show_flowers():
         print("once_every: ", row[2])
         print("How_much in ml: ", row[3])
         print('Last watering: ', row[4])
+        print('Next watering: ', row[5])
         print('-------------')
 
 def next_watering():
+    i=0
     from datetime import date
     print('-------------')
     print('Today is: ', date.today())
     print('-------------')
     for date in records:
+        i+=1
         dateint = datetime.strptime(date[4], '%Y-%m-%d')
         timedelta_dateint = dateint + timedelta(days=date[2])
         print('Last watering of ', date[0], f'(water every {date[2]} days)', ' was', date[4],
               'Next watering should be done in ', timedelta_dateint.strftime("%Y-%m-%d"))
+        c.execute(f'''UPDATE flowers SET next_watering = {timedelta_dateint.strftime("'%Y-%m-%d'")} where rowid={i}''')
+        connect.commit()
     print('-------------')
 
 def save_to_file():
