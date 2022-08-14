@@ -1,4 +1,5 @@
 import sqlite3
+import django
 from datetime import datetime, date, timedelta
 
 class Flower:
