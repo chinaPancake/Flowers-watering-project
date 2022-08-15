@@ -1,16 +1,32 @@
 <html>
 <head>
-
+<title>Create a new FLOWER </title>
 </head>
+<body>
+<!--- <h1>Create a new Flower</h1>
+<form action="" method="FLOWER">
+Flower Name: <input type="text" name="name"/><br/>
+Description: <br/>
+<textarea cols="30" rows="8" name="desciption">
+</textarea><br/>
+ Watering frequnecy <input type="number" name="frequency">
+Amount of water <input type="number" name="amount">
+When was the last watering <input type="date" name="last_watering" placeholder="dd-mm-yyyy" value="2022-08-15" min="2000-01-01" max="2030-01-01">
+Next Watering <input type="date" name="next_watering" placeholder="dd-mm-yyyy" value="2022-08-15" min="2000-01-01" max="2030-01-01">
+<input type="submit" value="Save"/>
+</form> --->
 
-<body slot="background-color:darkgreen; font-color:white;">
-{% if name'%}
-{{name}}
-<h1> Hello {{name}} </h1>
-{% else %}
-<h1> Other Name</h1>
-{% endif %}
+<table>
+{% for item in query_Results %}
+    {{item.name}}
+    {{item.description}}
+    {{item.frequency}}
+    {{item.amount}}
+    {{item.last_watering}}
+    {{item.next_watering}}
+{% endfor %}
+</table>
 
 </body>
+
 </html>
-<!-- Don't look here please! -->
