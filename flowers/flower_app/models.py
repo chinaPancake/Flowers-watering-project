@@ -10,7 +10,3 @@ class Flower(models.Model):
     amount = models.IntegerField()
     last_watering = models.DateField()
     next_watering = models.DateField()
-
-class Post(models.Model):
-    name = models.CharField(max_length=20,unique=True)
-    content = models.TextField()
