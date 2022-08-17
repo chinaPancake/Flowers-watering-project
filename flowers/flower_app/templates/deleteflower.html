@@ -3,19 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+       <style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
 </head>
 <body>
-<h1> Create a post </h1>
-<form method="POST">
-    <!---add csrf token --->
-    Which flower do you want to delete: <input type="text" name="name" /> <br/>
-    Description: <input type="text" name="description" /> <br/>
-    Frequency: <input type="number" name="frequency" /> <br/>
-    Amount: <input type="number" name="amount" /> <br/>
-    Last Watering: <input type="date" name="last_watering" /> <br/>
-    <input type="submit" value="Post">
+<h1> Delete from database </h1>
+    <table>
+        <tr>
+            <th> Name </th>
+            <th> Description </th>
+            <th> Frequency </th>
+            <th> Amount </th>
+            <th> Last Watering </th>
+            <th> Next Watering </th>
+        </tr>
+        {% for f in flower_number %}
+        <tr>
+            <td> {{ f.name }} </td>
+            <td> {{ f.description }}</td>
+            <td> {{ f.frequency }}</td>
+            <td> {{ f.amount }}</td>
+            <td> {{ f.last_watering }}</td>
+            <td> {{ f.next_watering }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br />
+<form method = "POST">
+    Which one do you want to delete?<br/>
+    Title: <input type="text" name="name" /> <br/>     <input type="submit" value="Post" />
 </form>
-
 </body>
 </html>
 </body>

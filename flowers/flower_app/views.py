@@ -21,10 +21,26 @@ def new_flower(request):
     return render(request, 'index.html')
 
 def update_flower(request):
+    data = Flower.objects.all()
+    flo = {
+        'flower_number': data
+    }
     if request.method == 'POST':
-        f = Flower.objects.get(name='Pilea')
-        f.description = 'dupa'
-        f.save()
-    return render(request, 'index.html')
+        f = Flower()
+        f.name = request.POST.get('name')
+        f.name = request.POST.get('name')
+        return render(request, 'updateflower.html', flo)
+    return render(request, 'updateflower.html', flo)
 
 def delete_flower(request):
+    data = Flower.objects.all()
+    flo = {
+        'flower_number': data
+    }
+    if request.method == 'POST':
+        f = Flower()
+        f.name = request.POST.get('name')
+        Flower.objects.get(name=f.name).delete()
+        return render(request,'deleteflower.html',flo)
+    return render(request, 'deleteflower.html', flo)
+

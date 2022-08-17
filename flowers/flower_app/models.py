@@ -4,7 +4,8 @@ from django.forms import ModelForm
 
 # Create your models here.
 class Flower(models.Model):
-    name = models.CharField(max_length=25, primary_key=True)
+    id = models.AutoField(primary_key = True)
+    name = models.CharField(max_length=25)
     description = models.CharField(max_length=150)
     frequency = models.IntegerField()
     amount = models.IntegerField()
