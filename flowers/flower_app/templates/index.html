@@ -11,7 +11,11 @@
     <li><a class="" href = "/flower_app/addflower/"> Add flower </a></li>
     <li><a class="" href = "/flower_app/deleteflower/"> Delete flower </a></li>
     <li><a class="" href = "/flower_app/updateflower/"> Update flower </a></li>
+    {% if user.is_authenticated %}
+        <li><a class="" href = "/flower_app/login_user/"> Logout </a></li>
+    {% else %}
     <li><a class="" href = "/flower_app/login_user/"> Login </a></li>
+    {% endif %}
 </ul>
 <h1> Hello on welcome page!</h1>
 <h3> Right now our team is working on this website! We can't wait to show it to you!</h3>

@@ -9,5 +9,6 @@ urlpatterns = [
     path('updateflower/', views.update_flower),
     path('deleteflower/', views.delete_flower),
     path('login_user/', views.login_user, name="login"),
+    path('logout_user', views.logout_user, name="logout"),
     #('createuser/', views.createUser),
 ]
