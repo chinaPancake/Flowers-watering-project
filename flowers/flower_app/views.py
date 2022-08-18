@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
+from django.urls import reverse_lazy
+from django.views import generic
 from .models import Flower, User
 from datetime import datetime, date, timedelta
 # Create your views here.
@@ -66,3 +69,8 @@ def logout_user(request):
     logout(request)
     messages.success(request, ("You Were loge Out"))
     return redirect('main')
+
+class SignUpView(generic.CreateView):
+    form_class = UserCreationForm
+    sucess_url = reverse_lazy("Login")
+    template_name = "signup.html"

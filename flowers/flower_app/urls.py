@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views
 from django.conf.urls.static import static
+from .views import SignUpView
 
 # URLConf
 urlpatterns = [
@@ -10,5 +11,6 @@ urlpatterns = [
     path('deleteflower/', views.delete_flower),
     path('login_user/', views.login_user, name="login"),
     path('logout_user', views.logout_user, name="logout"),
+    path('signupp/', SignUpView.as_view(), name='signup')
     #('createuser/', views.createUser),
 ]
