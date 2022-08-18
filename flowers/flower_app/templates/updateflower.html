@@ -3,25 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Update flower</title>
-    <style>
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
-
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
-
-tr:nth-child(even) {
-  background-color: #dddddd;
-}
-</style>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css/'%}" />
 </head>
 <body>
+<ul>
+    <li><a class="" href = "/flower_app/addflower/"> Add flower </a></li>
+    <li><a class="" href = "/flower_app/deleteflower/"> Delete flower </a></li>
+    <li><a class="" href = "/flower_app/updateflower/"> Update flower </a></li>
+        <li><a class="" href = "/flower_app/login_user/"> Login </a></li>
+</ul>
+{% csrf_token %}
 <h1> Update flower:  </h1>
     <table>
         <tr>

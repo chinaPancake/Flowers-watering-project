@@ -6,18 +6,23 @@
 </head>
 
 <body>
-{% csrf_token %}
 <ul>
     <li><a class="" href = "/flower_app/addflower/"> Add flower </a></li>
     <li><a class="" href = "/flower_app/deleteflower/"> Delete flower </a></li>
     <li><a class="" href = "/flower_app/updateflower/"> Update flower </a></li>
     <li><a class="" href = "/flower_app/login_user/"> Login </a></li>
 </ul>
-<h1> Hello on welcome page!</h1>
-<h3> Right now our team is working on this website! We can't wait to show it to you!</h3>
-Please wait, and watch on Your plants!
-<div class="container">
+ {% csrf_token %}
+<h1> Add new flower </h1>
+<form method="POST">
+    <!---add csrf token --->
+    Title: <input type="text" name="name" /> <br/>
+    Description: <input type="text" name="description" /> <br/>
+    Frequency: <input type="number" name="frequency" /> <br/>
+    Amount: <input type="number" name="amount" /> <br/>
+    Last Watering: <input type="date" name="last_watering" /> <br/>
+    <input type="submit" value="Post">
+</form>
 
-</div>
 </body>
 </html>
