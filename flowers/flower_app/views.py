@@ -67,8 +67,9 @@ def login_user(request):
 
 def logout_user(request):
     logout(request)
-    messages.success(request, ("You Were loge Out"))
+    messages.success(request, ("You were logged-out"))
     return redirect('main')
+
 
 class SignUpView(generic.CreateView):
     form_class = UserCreationForm
