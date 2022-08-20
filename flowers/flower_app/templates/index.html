@@ -1,7 +1,23 @@
 {% extends "base.html" %}
 
+{% block nav %}
+
+{% csrf_token %}
+<ul>
+    <li><a class="" href = "/flower_app/addflower/"> Add flower </a></li>
+    <li><a class="" href = "/flower_app/deleteflower/"> Delete flower </a></li>
+    <li><a class="" href = "/flower_app/updateflower/"> Update flower </a></li>
+    {% if user.is_authenticated %}
+        <li><a class="" href = "/flower_app/logout_user/"> Logout </a></li>
+    {% else %}
+    <li><a class="" href = "/flower_app/login_user/"> Login </a></li>
+    {% endif %}
+</ul>
+
+{% endblock %}
+
 {% block content %}
-<h1> Hello on welcome page!</h1>
-<h3> Right now our team is working on this website! We can't wait to show it to you!</h3>
-Please wait, and watch on Your plants!
+<div id="content">
+    <H1> Working on Page</H1>
+</div>
 {% endblock %}
