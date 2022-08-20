@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 
 {% block nav %}
-
 {% csrf_token %}
 <ul>
     <li><a class="" href = "/flower_app/addflower/"> Add flower </a></li>
@@ -13,7 +12,6 @@
     <li><a class="" href = "/flower_app/login_user/"> Login </a></li>
     {% endif %}
 </ul>
-
 {% endblock %}
 
 {% block content %}

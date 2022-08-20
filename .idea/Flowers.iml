@@ -3,8 +3,11 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/venv" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea" />
+      <excludePattern pattern="*.sqlite3" />
+      <excludePattern pattern=" flower.db" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.10 (Flowers-watering-project)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.10 (flowers-lUDnSYQE)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>
