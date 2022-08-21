@@ -15,8 +15,8 @@ urlpatterns = [
     path('deleteflower/', views.delete_flower),
     path('login_user/', views.login_user, name="login"),
     path('logout_user/', views.logout_user, name="logout"),
-    path('signup/', SignUpView.as_view(), name='signup')
-    path('', TemplateView.as_view(template_name="index.html")),
+    path('signup/', SignUpView.as_view(), name='signup'),
+    #path('', TemplateView.as_view(template_name="index.html")),
     path('accounts/', include('allauth.urls')),
     path('logout', LogoutView.as_view()),
    # ('createuser/', views.createUser),
