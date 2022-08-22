@@ -1,14 +1,31 @@
 <!DOCTYPE html>
- {% load static %}
-<html>
+<html lang="en">
+
 <head>
+    <meta charset="UTF-8">
+    {% load static %}
     <link rel="stylesheet" href="{% static 'style.css/'%}" />
 </head>
-
 <body>
-{% block nav %}
-{% endblock %}
-{% block content %}
-{% endblock %}
+{% csrf_token %}
+
+    <ul>
+        {% if user.is_authenticated %}
+            <li><a class="" href = "/flower_app/addflower/"> {{ request.user.username }} Panel </a></li>
+        {% else %}
+            <li><a class="" href = "/flower_app/addflower/"> Main Page </a></li>
+        {% endif %}
+        <li><a class="" href = "/flower_app/addflower/"> Add flower </a></li>
+        <li><a class="" href = "/flower_app/deleteflower/"> Delete flower </a></li>
+        <li><a class="" href = "/flower_app/updateflower/"> Update flower </a></li>
+        {% if user.is_authenticated %}
+            <li><a class="" href = "/flower_app/logout_user/"> Logout </a></li>
+        {% else %}
+            <li><a class="" href = "/flower_app/login_user/"> Login </a></li>
+        {% endif %}
+    </ul>
+
+
+
 </body>
 </html>

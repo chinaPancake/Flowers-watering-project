@@ -75,3 +75,6 @@ class SignUpView(generic.CreateView):
     form_class = UserCreationForm
     sucess_url = reverse_lazy("Login")
     template_name = "signup.html"
+
+def base_index(request):
+    return render(request, 'base_index.html')
