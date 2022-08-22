@@ -11,9 +11,9 @@
 
     <ul>
         {% if user.is_authenticated %}
-            <li><a class="" href = "/flower_app/addflower/"> {{ request.user.username }} Panel </a></li>
+            <li><a class="" href = "/flower_app/main/"> {{ request.user.username }} Panel </a></li>
         {% else %}
-            <li><a class="" href = "/flower_app/addflower/"> Main Page </a></li>
+            <li><a class="" href = "/flower_app/main/"> Main Page </a></li>
         {% endif %}
         <li><a class="" href = "/flower_app/addflower/"> Add flower </a></li>
         <li><a class="" href = "/flower_app/deleteflower/"> Delete flower </a></li>
@@ -25,7 +25,8 @@
         {% endif %}
     </ul>
 
-
+{% block content %}
+{% endblock %}
 
 </body>
 </html>

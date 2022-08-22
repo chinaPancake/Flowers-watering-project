@@ -1,44 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+{% extends "base.html" %}
+
 <head>
     <meta charset="UTF-8">
     {% load static %}
     <link rel="stylesheet" href="{% static 'style.css/'%}" />
 </head>
 <body>
-<ul>
-    <li><a class="" href = "/flower_app/addflower/"> Add flower </a></li>
-    <li><a class="" href = "/flower_app/deleteflower/"> Delete flower </a></li>
-    <li><a class="" href = "/flower_app/updateflower/"> Update flower </a></li>
-    {% if user.is_authenticated %}
-        <li><a class="" href = "/flower_app/logout_user/"> Logout </a></li>
-    {% else %}
-    <li><a class="" href = "/flower_app/login_user/"> Login </a></li>
-    {% endif %}
-</ul>
 {% csrf_token %}
-<h1> Delete from database </h1>
-    <table>
-        <tr>
-            <th> Name </th>
-            <th> Description </th>
-            <th> Frequency </th>
-            <th> Amount </th>
-            <th> Last Watering </th>
-            <th> Next Watering </th>
-        </tr>
-        {% for f in flower_number %}
-        <tr>
-            <td> {{ f.name }} </td>
-            <td> {{ f.description }}</td>
-            <td> {{ f.frequency }}</td>
-            <td> {{ f.amount }}</td>
-            <td> {{ f.last_watering }}</td>
-            <td> {{ f.next_watering }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-    <br />
+    {% block content %}
+        <h1> Delete from database </h1>
+            <table>
+                <tr>
+                    <th> Name </th>
+                    <th> Description </th>
+                    <th> Frequency </th>
+                    <th> Amount </th>
+                    <th> Last Watering </th>
+                    <th> Next Watering </th>
+                </tr>
+                {% for f in flower_number %}
+                <tr>
+                    <td> {{ f.name }} </td>
+                    <td> {{ f.description }}</td>
+                    <td> {{ f.frequency }}</td>
+                    <td> {{ f.amount }}</td>
+                    <td> {{ f.last_watering }}</td>
+                    <td> {{ f.next_watering }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+            <br />
+    {% endblock%}
 <form method = "POST">
     Which one do you want to delete?<br/>
     Title: <input type="text" name="name" /> <br/>     <input type="submit" value="Post" />

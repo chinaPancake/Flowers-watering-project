@@ -7,23 +7,13 @@
 
 <body>
 {% csrf_token %}
-<ul>
-    <li><a class="" href = "/flower_app/addflower/"> Add flower </a></li>
-    <li><a class="" href = "/flower_app/deleteflower/"> Delete flower </a></li>
-    <li><a class="" href = "/flower_app/updateflower/"> Update flower </a></li>
-    {% if user.is_authenticated %}
-        <li><a class="" href = "/flower_app/logout_user/"> Logout </a></li>
-    {% else %}
-    <li><a class="" href = "/flower_app/login_user/"> Login </a></li>
-    {% endif %}
-</ul>
-
-<h2> Sign Up</h2>
-<form method = "post">
-    {% csrf_token %}
-    {{form.as_p}}
-    <button type="submit">Sign Up</button>
-</form>
+    {% block content %}
+        <h2> Sign Up</h2>
+        <form method = "post">
+            {{form.as_p}}
+            <button type="submit">Sign Up</button>
+        </form>
+    {% endblock %}
 
 </body>
 </html>
