@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "flower_app",
+
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
