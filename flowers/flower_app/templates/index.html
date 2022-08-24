@@ -9,9 +9,37 @@
 </head>
 <body>
 {% block content %}
+{% if user.is_authenticated %}
+    <h1> Flower In Database:  </h1>
+            <table>
+                <tr>
+                    <th> Name </th>
+                    <th> Description </th>
+                    <th> Frequency </th>
+                    <th> Amount </th>
+                    <th> Last Watering </th>
+                    <th> Next Watering </th>
+                </tr>
+                {% for f in flower_number %}
+                <tr>
+                    <td> {{ f.name }} </td>
+                    <td> {{ f.description }}</td>
+                    <td> {{ f.frequency }}</td>
+                    <td> {{ f.amount }}</td>
+                    <td> {{ f.last_watering }}</td>
+                    <td> {{ f.next_watering }}</td>
+                </tr>
+            <br />
+            {% endfor %}
+            </table>
+    <input type="button" value="+">
+    <input type="button" value="-">
+    <input type="button" value="Update Flower">
+{% else %}
     <div>
         This is how userPanel gonna looks like: <a href ="https://imgur.com/a/GGbRLU " > LINK TO IMGUR </a>
     </div>
+{% endif %}
 {% endblock %}
 </body>
 </html>

@@ -5,7 +5,12 @@ from django.contrib import messages
 from django.urls import reverse_lazy
 from django.views import generic
 from .models import Flower, User
+from .forms import FlowerForm
 from datetime import datetime, date, timedelta
+from django.views.generic.list import ListView
+from django.views.generic.edit import ModelFormMixin
+
+
 # Create your views here.
 # request -> respons
 # request handler
@@ -38,6 +43,18 @@ def update_flower(request):
         return render(request, 'updateflower.html', flo)
     return render(request, 'updateflower.html', flo)
 
+def show_flower(request):
+    data = Flower.objects.all()
+    flo = {
+        'flower_number': data
+    }
+    if request.method == 'POST':
+        f = Flower()
+        f.name = request.POST.get('name')
+        return render(request, 'index.html', flo)
+    return render(request, 'index.html', flo)
+
+
 def delete_flower(request):
     data = Flower.objects.all()
     flo = {
@@ -69,6 +86,15 @@ def logout_user(request):
     logout(request)
     messages.success(request, ("You were logged-out"))
     return redirect('main')
+
+
+class ListWithForm(generic.CreateView):
+    template_name = 'index.html'
+    form_class = FlowerForm
+    model = Flower
+
+    def get_info(self, **kwargs):
+        return self
 
 
 class SignUpView(generic.CreateView):
