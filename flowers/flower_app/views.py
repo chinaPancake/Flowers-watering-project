@@ -43,17 +43,6 @@ def update_flower(request):
         return render(request, 'updateflower.html', flo)
     return render(request, 'updateflower.html', flo)
 
-def show_flower(request):
-    data = Flower.objects.all()
-    flo = {
-        'flower_number': data
-    }
-    if request.method == 'POST':
-        f = Flower()
-        f.name = request.POST.get('name')
-        return render(request, 'index.html', flo)
-    return render(request, 'index.html', flo)
-
 
 def delete_flower(request):
     data = Flower.objects.all()
@@ -95,6 +84,17 @@ class ListWithForm(generic.CreateView):
 
     def get_info(self, **kwargs):
         return self
+
+    def show_flower(self, **kwargs):
+        data = Flower.objects.all()
+        flo = {
+            'flower_number': data
+        }
+        if request.method == 'POST':
+            f = Flower()
+            f.name = request.POST.get('name')
+            return render(self, **kwargs)
+        return render(self, **kwargs)
 
 
 class SignUpView(generic.CreateView):
