@@ -3,8 +3,9 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.urls import reverse_lazy
-from django.views import generic
+from django.views import generic, View
 from .models import Flower, User
+
 from .forms import FlowerForm
 from datetime import datetime, date, timedelta
 from django.views.generic.list import ListView
@@ -32,7 +33,7 @@ def new_flower(request):
 
     return render(request, 'addflower.html')
 
-def update_flower(request):
+"""def update_flower(request):
     data = Flower.objects.all()
     flo = {
         'flower_number': data
@@ -41,7 +42,7 @@ def update_flower(request):
         f = Flower()
         f.name = request.POST.get('name')
         return render(request, 'updateflower.html', flo)
-    return render(request, 'updateflower.html', flo)
+    return render(request, 'updateflower.html', flo)"""
 
 
 def delete_flower(request):
@@ -77,15 +78,11 @@ def logout_user(request):
     return redirect('main')
 
 
-class ListWithForm(generic.CreateView):
-    template_name = 'index.html'
-    form_class = FlowerForm
-    model = Flower
+class ListWithForm(View):
+    def get(self, request):
 
-    def get_info(self, **kwargs):
-        return self
 
-    def show_flower(self, **kwargs):
+    def post(self, request):
         data = Flower.objects.all()
         flo = {
             'flower_number': data
@@ -93,8 +90,9 @@ class ListWithForm(generic.CreateView):
         if request.method == 'POST':
             f = Flower()
             f.name = request.POST.get('name')
-            return render(self, **kwargs)
-        return render(self, **kwargs)
+            return render(request, 'updateflower.html', flo)
+        return render(request, 'updateflower.html', flo)
+
 
 
 class SignUpView(generic.CreateView):
