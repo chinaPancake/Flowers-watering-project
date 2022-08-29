@@ -11,7 +11,7 @@ from django.contrib.auth.views import LogoutView
 urlpatterns = [
     path('main/', views.main),
     path('addflower/', views.new_flower),
-    path('updateflower/', views.update_flower),
+    path('updateflower/', views.ListWithForm.as_view()),
     path('deleteflower/', views.delete_flower),
     path('login_user/', views.login_user, name="login"),
     path('logout_user/', views.logout_user, name="logout"),

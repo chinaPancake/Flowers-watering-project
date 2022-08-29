@@ -80,9 +80,6 @@ def logout_user(request):
 
 class ListWithForm(View):
     def get(self, request):
-
-
-    def post(self, request):
         data = Flower.objects.all()
         flo = {
             'flower_number': data
