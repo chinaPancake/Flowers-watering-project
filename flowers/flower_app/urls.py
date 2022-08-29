@@ -9,7 +9,7 @@ from django.contrib.auth.views import LogoutView
 
 # URLConf
 urlpatterns = [
-    path('main/', views.main),
+    path('main/', views.ListWithForm.as_view()),
     path('addflower/', views.new_flower),
     path('updateflower/', views.ListWithForm.as_view()),
     path('deleteflower/', views.delete_flower),

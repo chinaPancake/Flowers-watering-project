@@ -87,8 +87,8 @@ class ListWithForm(View):
         if request.method == 'POST':
             f = Flower()
             f.name = request.POST.get('name')
-            return render(request, 'updateflower.html', flo)
-        return render(request, 'updateflower.html', flo)
+            return render(request, 'index.html', flo)
+        return render(request, 'index.html', flo)
 
 
 
