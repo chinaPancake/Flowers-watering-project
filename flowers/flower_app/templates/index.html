@@ -10,7 +10,7 @@
 <body>
 {% block content %}
 {% if user.is_authenticated %}
-    <h1> Flower In Database:  </h1>
+    <h1> {{request.user.username}}  Flowers:  </h1>
             <table>
                 <tr>
                     <th> Name </th>
@@ -34,7 +34,7 @@
 
             </table>
 
-    <input type="button" value="+">
+    <a href = "/flower_app/addflower/"> <input type="button" value="+"></a>
     <input type="button" value="-">
     <input type="button" value="Update Flower">
 {% else %}

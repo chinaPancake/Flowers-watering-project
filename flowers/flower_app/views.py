@@ -33,17 +33,7 @@ def new_flower(request):
 
     return render(request, 'addflower.html')
 
-"""def update_flower(request):
-    data = Flower.objects.all()
-    flo = {
-        'flower_number': data
-    }
-    if request.method == 'POST':
-        f = Flower()
-        f.name = request.POST.get('name')
-        return render(request, 'updateflower.html', flo)
-    return render(request, 'updateflower.html', flo)"""
-
+"""def update_flower(request):"""
 
 def delete_flower(request):
     data = Flower.objects.all()
