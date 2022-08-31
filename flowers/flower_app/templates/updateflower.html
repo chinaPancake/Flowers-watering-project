@@ -12,14 +12,14 @@
 {% csrf_token %}
     {% block content %}
         <h1> Flower In Database:  </h1>
-            <table>
+            <table class = "table table-dark">
                 <tr>
-                    <th> Name </th>
-                    <th> Description </th>
-                    <th> Frequency </th>
-                    <th> Amount </th>
-                    <th> Last Watering </th>
-                    <th> Next Watering </th>
+                    <th scope = 'col'> Name </th>
+                    <th scope = 'col'> Description </th>
+                    <th scope = 'col'> Frequency </th>
+                    <th scope = 'col'> Amount </th>
+                    <th scope = 'col'> Last Watering </th>
+                    <th scope = 'col'> Next Watering </th>
                 </tr>
                 {% for f in flower_number %}
                 <tr>
@@ -33,11 +33,13 @@
             <br />
             {% endfor %}
             </table>
-    {% endblock %}
 <form method = "POST">
     Which one do you want to update?<br/>
-    <input type="text" name="name" /> <br/>
+    <input type="text" name="name" placeholder="NAME"/> <br/>
+    <input type="text" name="description" placeholder="description"/> <br/>
     <input type="submit" value="Post" />
 </form>
+    {% endblock %}
+
 </body>
 </html>

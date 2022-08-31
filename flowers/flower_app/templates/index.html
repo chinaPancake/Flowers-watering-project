@@ -11,14 +11,14 @@
 {% block content %}
 {% if user.is_authenticated %}
     <h1> {{request.user.username}}  Flowers:  </h1>
-            <table>
+            <table class = "table table-dark">
                 <tr>
-                    <th> Name </th>
-                    <th> Description </th>
-                    <th> Frequency </th>
-                    <th> Amount </th>
-                    <th> Last Watering </th>
-                    <th> Next Watering </th>
+                    <th scope = 'col'> Name </th>
+                    <th scope = 'col'> Description </th>
+                    <th scope = 'col'> Frequency </th>
+                    <th scope = 'col'> Amount </th>
+                    <th scope = 'col'> Last Watering </th>
+                    <th scope = 'col'> Next Watering </th>
                 </tr>
                 {% for f in flower_number %}
                 <tr>
@@ -31,12 +31,12 @@
                 </tr>
             <br />
             {% endfor %}
-
             </table>
-
-    <a href = "/flower_app/addflower/"> <input type="button" value="+"></a>
-    <input type="button" value="-">
-    <input type="button" value="Update Flower">
+            <div class="d-flex justify-content-center">
+                <a href = "/flower_app/addflower/"><input type="button" value="+" class=" btn btn-success" style="margin-right: 10px;"></a>
+                <a href = "/flower_app/updateflower/"><input type="button" value="Update Flower" class = "btn btn-warning" style="margin-right: 10px;"></a>
+                <a href = "/flower_app/deleteflower/"><input type="button" value="-" class = "btn btn-danger "  ></a>
+            </div>
 {% else %}
     <div>
         This is how userPanel gonna looks like: <a href ="https://imgur.com/a/GGbRLU " > LINK TO IMGUR </a>

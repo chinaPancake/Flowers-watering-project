@@ -18,9 +18,9 @@
         <ul class="navbar-nav">
         {% if user.is_authenticated %}
             <li class = "nav-item"><a class="nav-link" href = "/flower_app/main/"> {{ request.user.username }} Panel </a></li>
-            <li class = "nav-item"><a class="nav-link" href = "/flower_app/addflower/"> Add flower </a></li>
+            <!---<li class = "nav-item"><a class="nav-link" href = "/flower_app/addflower/"> Add flower </a></li>
             <li class = "nav-item"><a class="nav-link" href = "/flower_app/deleteflower/"> Delete flower </a></li>
-            <li class = "nav-item"><a class="nav-link" href = "/flower_app/updateflower/"> Update flower </a></li>
+            <li class = "nav-item"><a class="nav-link" href = "/flower_app/updateflower/"> Update flower </a></li> --->
             <li class = "nav-item"><a class="nav-link" href = "/flower_app/logout_user/"> Logout </a></li>
         {% else %}
             <li class = "nav-item"><a class="nav-link" href = "/flower_app/main/"> Main Page </a></li>
