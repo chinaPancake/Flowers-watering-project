@@ -5,11 +5,9 @@ from django.contrib import messages
 from django.urls import reverse_lazy
 from django.views import generic, View
 from .models import Flower, User
-
-from .forms import FlowerForm
 from datetime import datetime, date, timedelta
-from django.views.generic.list import ListView
-from django.views.generic.edit import ModelFormMixin
+from django.views.generic import FormView
+from .forms import BookingForm
 
 
 # Create your views here.
@@ -92,10 +90,11 @@ class ListWithForm(View):
             return render(request, 'index.html', flo)
         return render(request, 'index.html', flo)
 
-
-
 class SignUpView(generic.CreateView):
     form_class = UserCreationForm
     sucess_url = reverse_lazy("Login")
     template_name = "signup.html"
 
+class HomeView(FormView):
+    form_class = BookingForm
+    template_name = 'cal/home.html'
