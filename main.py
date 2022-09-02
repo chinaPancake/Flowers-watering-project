@@ -1,6 +1,7 @@
 import sqlite3
 import django
 from datetime import datetime, date, timedelta
+from pprint import pprint
 
 class Flower:
     def __init__(self, name, description, frequency, amount, last_watering):
