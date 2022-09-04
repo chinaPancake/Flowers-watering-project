@@ -52,8 +52,8 @@ def delete_flower(request):
     }
     if request.method == 'POST':
         f = Flower()
-        f.name = request.POST.get('name')
-        Flower.objects.get(name=f.name).delete()
+        f.id = request.POST.get('id')
+        Flower.objects.get(id=f.id).delete()
         return render(request,'deleteflower.html',flo)
     return render(request, 'deleteflower.html', flo)
 

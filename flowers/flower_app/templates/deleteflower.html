@@ -13,6 +13,7 @@
         <h1> Delete from database </h1>
             <table class = 'table table-dark'>
                 <tr>
+                    <th scope = 'col'> Id </th>
                     <th scope = 'col'> Name </th>
                     <th scope = 'col'> Description </th>
                     <th scope = 'col'> Frequency </th>
@@ -22,6 +23,7 @@
                 </tr>
                 {% for f in flower_number %}
                 <tr>
+                    <td> {{ f.id }}</td>
                     <td> {{ f.name }} </td>
                     <td> {{ f.description }}</td>
                     <td> {{ f.frequency }}</td>
@@ -35,7 +37,7 @@
             <br />
     <form method = "POST">
         Which one do you want to delete? <br/>
-        Name: <input type="text" name="name" />    <input type="submit" value="Delete" />
+        Name: <input type="number" name="id" />    <input type="submit" value="Delete" />
     </form>
 {% endblock%}
 </body>
