@@ -4,10 +4,14 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.urls import reverse_lazy
 from django.views import generic, View
+
+from django.shortcuts import (get_object_or_404,
+                              render,
+                              HttpResponseRedirect)
 from .models import Flower, User
 from datetime import datetime, date, timedelta
 from django.views.generic import FormView
-from .forms import BookingForm
+from .forms import BookingForm, FlowerForm
 
 
 # Create your views here.
@@ -32,18 +36,30 @@ def new_flower(request):
     return render(request, 'addflower.html')
 
 def update_flower(request):
+    if request.method == 'GET':
+        flower = Flower.objects.get(pk=request.GET['id'])
+        return render(request, 'updateflower.html', {'flower': flower})
+    if request.method == 'POST':
+        flower = Flower.objects.get(pk=request.POST.get('id'))
+        flower.name = request.POST.get('name')
+        flower.description = request.POST.get('description')
+        flower.frequency = int(request.POST.get('frequency'))
+        flower.amount = int(request.POST.get('amount'))
+        flower.last_watering = datetime.strptime(request.POST.get('last_watering'),'%Y-%m-%d')
+        flower.next_watering = flower.last_watering + timedelta(days=flower.frequency)
+        flower.save()
     data = Flower.objects.all()
     flo = {
         'flower_number': data
     }
-    if request.method == 'POST':
-        f = Flower()
-        f.name = request.POST.get('name')
-        f.description = request.POST.get('description')
-        Flower.objects.get(name=f.name).update()
-        Flower.objects.get(name=f.description).update()
-        return render(request, 'updateflower.html', flo)
-    return render(request, 'updateflower.html', flo)
+    return render(request, 'flowerlist.html', flo)
+
+def flower_list(request):
+    data = Flower.objects.all()
+    flo = {
+        'flower_number': data
+    }
+    return render(request, 'flowerlist.html', flo)
 
 def delete_flower(request):
     data = Flower.objects.all()

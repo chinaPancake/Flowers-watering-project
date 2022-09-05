@@ -17,4 +17,5 @@ urlpatterns = [
     path('signup/', SignUpView.as_view(), name='signup'),
     path('accounts/', include('allauth.urls')),
     path('logout', LogoutView.as_view()),
+    path('listflower/', views.flower_list),
 ]
