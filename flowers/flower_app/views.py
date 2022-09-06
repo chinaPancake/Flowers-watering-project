@@ -54,13 +54,6 @@ def update_flower(request):
     }
     return render(request, 'flowerlist.html', flo)
 
-def flower_list(request):
-    data = Flower.objects.all()
-    flo = {
-        'flower_number': data
-    }
-    return render(request, 'flowerlist.html', flo)
-
 def delete_flower(request):
     data = Flower.objects.all()
     flo = {
@@ -93,6 +86,12 @@ def logout_user(request):
     messages.success(request, ("You were logged-out"))
     return redirect('main')
 
+def flower_list(request):
+    data = Flower.objects.all()
+    flo = {
+        'flower_number': data
+    }
+    return render(request, 'flowerlist.html', flo)
 
 class ListWithForm(View):
     def get(self, request):
@@ -106,6 +105,15 @@ class ListWithForm(View):
             return render(request, 'index.html', flo)
         return render(request, 'index.html', flo)
 
+    def post(self, request):
+        data = Flower.objects.all()
+        flo = {
+            'flower_number': data
+        }
+        if request.method == 'GET':
+            flower = Flower.objects.get(pk=request.GET['id'])
+            return render(request, 'index.htl', {'flower': flower})
+        return render(request, 'index.html', flo)
 class SignUpView(generic.CreateView):
     form_class = UserCreationForm
     sucess_url = reverse_lazy("Login")

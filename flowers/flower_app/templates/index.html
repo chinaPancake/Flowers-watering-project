@@ -20,6 +20,7 @@
                     <th scope = 'col'> Last Watering </th>
                     <th scope = 'col'> Next Watering </th>
                     <th scope = 'col'> Update </th>
+                    <th scope = 'col'> Delete </th>
                 </tr>
                 {% for f in flower_number %}
                 <tr>
@@ -30,6 +31,7 @@
                     <td> {{ f.last_watering }}</td>
                     <td> {{ f.next_watering }}</td>
                     <td> <a href="/flower_app/updateflower?id={{f.id}}">Update</a> </td>
+                    <td> <a href="/flower_app/deleteflower?id={{f.id}}">Delete</a> </td>
                 </tr>
             <br />
             {% endfor %}
