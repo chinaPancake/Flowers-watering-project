@@ -10,7 +10,7 @@ from django.shortcuts import (get_object_or_404,
                               HttpResponseRedirect)
 from .models import Flower, User
 from datetime import datetime, date, timedelta
-from django.views.generic import FormView
+from django.views.generic import FormView, DeleteView
 from .forms import BookingForm, FlowerForm
 
 
@@ -54,18 +54,6 @@ def update_flower(request):
     }
     return render(request, 'flowerlist.html', flo)
 
-def delete_flower(request):
-    data = Flower.objects.all()
-    flo = {
-        'flower_number': data
-    }
-    if request.method == 'POST':
-        f = Flower()
-        f.id = request.POST.get('id')
-        Flower.objects.get(id=f.id).delete()
-        return render(request,'deleteflower.html',flo)
-    return render(request, 'deleteflower.html', flo)
-
 def login_user(request):
     if request.method == 'POST':
         pass
@@ -80,6 +68,12 @@ def login_user(request):
             return redirect('login')
     else:
         return render(request, 'login.html', {})
+
+class DeleteView(DeleteView):
+    model = Flower
+    context_object_name = 'flower'
+    success_url = reverse_lazy('flower')
+    template_name = "flower_confirm_delete.html"
 
 def logout_user(request):
     logout(request)

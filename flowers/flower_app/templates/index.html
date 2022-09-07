@@ -21,6 +21,7 @@
                     <th scope = 'col'> Next Watering </th>
                     <th scope = 'col'> Update </th>
                     <th scope = 'col'> Delete </th>
+                    <th scope = 'col'> Add  </th>
                 </tr>
                 {% for f in flower_number %}
                 <tr>
@@ -30,18 +31,13 @@
                     <td> {{ f.amount }}</td>
                     <td> {{ f.last_watering }}</td>
                     <td> {{ f.next_watering }}</td>
-                    <td> <a href="/flower_app/updateflower?id={{f.id}}">Update</a> </td>
-                    <td> <a href="/flower_app/deleteflower?id={{f.id}}">Delete</a> </td>
+                    <td> <a href="/flower_app/updateflower?id={{f.id}}"><input type="button" value="Update" class = "btn btn-warning " > </a> </td>
+                    <td> <a href="{% url 'flower-delete' f.id %}"> <input type="button" value="-" class = "btn btn-danger " > </a> </td>
+                    <td> <a href = "/flower_app/addflower/"><input type="button" value="+" class=" btn btn-success" style="margin-right: 10px;"></a></td>
                 </tr>
             <br />
             {% endfor %}
             </table>
-
-            <div class="d-flex justify-content-center">
-                <a href = "/flower_app/addflower/"><input type="button" value="+" class=" btn btn-success" style="margin-right: 10px;"></a>
-
-                <a href = "/flower_app/deleteflower/"><input type="button" value="-" class = "btn btn-danger "  ></a>
-            </div>
 
 {% else %}
     <div>
