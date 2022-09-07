@@ -10,15 +10,14 @@ so this project is for people who have a lot on their heads, and sometimes forge
 Turn on notification and save another life today! 
 
 Working on:
-* Creating new user
-* Logging with google
 * Google calendar reminders
-* User Panel
-* * User can add / delete / update their flowers
-* Frontend with JS
+* Auto-Update next/last flower watering
 
 Done
 * Working in terminal app
 * Login with created user
 * Add / Delete / Read flower from database
 * Login wiht google 
+* Create new user with google
+* User Panel
+* * User can add / delete / update their flowers
