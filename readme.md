@@ -17,7 +17,7 @@ Done
 * Working in terminal app
 * Login with created user
 * Add / Delete / Read flower from database
-* Login wiht google 
+* Login with google 
 * Create new user with google
 * User Panel
 * * User can add / delete / update their flowers
