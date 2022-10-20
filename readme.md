@@ -22,3 +22,5 @@ Done
 * Create new user with google
 * User Panel
 * * User can add / delete / update their flowers
+
+And please do not forget to water your plants
