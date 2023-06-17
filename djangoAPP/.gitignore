@@ -1,0 +1,7 @@
+flowers.db
+*.db
+*.sqbpro
+flowers/flower_app/__pycache__
+flowers/flowers/__pycache__
+flowers/flower_app/templatetags/__pycache__
+ flowers/flowers/__pycache__/settings.cpython-310.pyc
