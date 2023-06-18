@@ -48,6 +48,16 @@ def fet_flower(id):
     return dict(res[id])
 
 
+def get_flower_by_id(id):
+    con = sqlite3.connect("flowers.db")
+    con.row_factory = sqlite3.Row
+    cur = con.cursor()
+    cur.execute(f"select * from flowers where id = '{id}'")
+    res = cur.fetchall()
+    con.commit()
+    return dict(res[0])
+
+
 def delete_flower(id: int):
     con = sqlite3.connect("flowers.db")
     cur = con.cursor()

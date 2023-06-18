@@ -1,2 +1,5 @@
 *.db
+flowers.db
+database/flowers.db
 __pycache__
+*.db

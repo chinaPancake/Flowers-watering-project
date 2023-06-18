@@ -2,7 +2,7 @@ from typing import Union, Annotated
 import json
 from fastapi import FastAPI, Header
 from class_model import Flower
-from database.connection import add_flower, fet_flower, delete_flower
+from database.connection import add_flower, fet_flower, delete_flower, get_flower_by_id
 
 app = FastAPI()
 
@@ -15,6 +15,11 @@ def read_root():
 @app.get("/show")
 def show(id: Annotated[int | None, Header()] = None):
     return fet_flower(id=id - 1)
+
+
+@app.get("/flower")
+def get_flower(id: Annotated[int | None, Header()] = None):
+    return get_flower_by_id(id=id)
 
 
 @app.post("/add_flower")
